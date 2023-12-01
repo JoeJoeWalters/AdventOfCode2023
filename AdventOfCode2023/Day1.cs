@@ -68,7 +68,7 @@ namespace AdventOfCode2023
                     numbers = DecodeWords(line);
                     break;
                 default:
-                    numbers = line.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
+                    numbers = SplitToNumbers(line);
                     break;
             }
 
@@ -131,10 +131,13 @@ namespace AdventOfCode2023
 
             List<string> result = new List<string>();
             split.ForEach(item => { 
-                    result.AddRange(item.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList());
+                    result.AddRange(SplitToNumbers(item));
             });
 
             return result;
         }
+
+        private List<string> SplitToNumbers(string item)
+            => item.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
     }
 }
