@@ -32,7 +32,7 @@ namespace AdventOfCode2023
     public class Day1
     {
         private readonly string[] _data;
-        private const int _expectedResult = 281;
+        private const int _expectedResult = 52840;
 
         private enum DecodeStyle
         {
@@ -122,6 +122,7 @@ namespace AdventOfCode2023
                         if ((i + rep.Key.Length <= line.Length) && line.Substring(i, rep.Key.Length) == rep.Key)
                         {
                             split.Add(rep.Value);
+                            break;
                         }
                     }
                 }
