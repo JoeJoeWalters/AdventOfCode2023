@@ -1,4 +1,6 @@
 using FluentAssertions;
+using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdventOfCode2023
 {
@@ -30,7 +32,7 @@ namespace AdventOfCode2023
     public class Day1
     {
         private readonly string[] _data;
-        private const int _expectedResult = 53974;
+        private const int _expectedResult = 281;
 
         private enum DecodeStyle
         {
@@ -51,7 +53,7 @@ namespace AdventOfCode2023
             int sum = 0;
 
             // ACT
-            _data.ToList().ForEach(line => { sum += DecodeLine(line, DecodeStyle.NumbersOnly); });
+            _data.ToList().ForEach(line => { sum += DecodeLine(line, DecodeStyle.NumbersAndWords); });
 
             // ASSERT
             sum.Should().Be(_expectedResult);
@@ -63,7 +65,7 @@ namespace AdventOfCode2023
             switch (style)
             {
                 case DecodeStyle.NumbersAndWords:
-                    line = DecodeWords(line);
+                    numbers = DecodeWords(line);
                     break;
                 default:
                     numbers = line.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
@@ -78,7 +80,7 @@ namespace AdventOfCode2023
             };
         }
 
-        private string DecodeWords(string line)
+        private List<string> DecodeWords(string line)
         {
             Dictionary<string, string> replacements = new Dictionary<string, string>()
             {
@@ -104,8 +106,45 @@ namespace AdventOfCode2023
                 { "twenty", "20" }
             };
 
-            replacements.Reverse().ToList().ForEach(t => { line = line.Replace(t.Key, t.Value); });
-            return line;
+            //string marked = line;
+            //replacements.Reverse().ToList().ForEach(t => { marked = marked.Replace(t.Key, $"<{t.Value}>"); });
+            //var split = marked.Split(new Char[] { '<', '>' },
+            //                     StringSplitOptions.RemoveEmptyEntries).ToList();//.Select(x => RemoveCharacters(x)).Where(x => !String.IsNullOrEmpty(x)).ToList();
+            List<string> split = new List<string>();
+            for (var i = 0; i < line.Length; i++)
+            {
+                char ch = line[i];
+                int asc = (int)ch; 
+                if (asc >= 48 && asc <= 57)
+                {
+                    split.Add(ch.ToString());
+                }
+                else
+                {
+                    foreach (var rep in replacements.Reverse())
+                    {
+                        if ((i + rep.Key.Length <= line.Length) && line.Substring(i, rep.Key.Length) == rep.Key)
+                        {
+                            split.Add(rep.Value);
+                        }
+                    }
+                }
+            }
+
+
+            List<string> result = new List<string>();
+            split.ForEach(item => { 
+                    result.AddRange(item.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList());
+            });
+
+            return result;
         }
+
+        private string RemoveCharacters(string line)
+        {
+            var brokenDown = line.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
+            return string.Join("", brokenDown);
+        }
+
     }
 }
