@@ -106,10 +106,6 @@ namespace AdventOfCode2023
                 { "twenty", "20" }
             };
 
-            //string marked = line;
-            //replacements.Reverse().ToList().ForEach(t => { marked = marked.Replace(t.Key, $"<{t.Value}>"); });
-            //var split = marked.Split(new Char[] { '<', '>' },
-            //                     StringSplitOptions.RemoveEmptyEntries).ToList();//.Select(x => RemoveCharacters(x)).Where(x => !String.IsNullOrEmpty(x)).ToList();
             List<string> split = new List<string>();
             for (var i = 0; i < line.Length; i++)
             {
@@ -139,12 +135,5 @@ namespace AdventOfCode2023
 
             return result;
         }
-
-        private string RemoveCharacters(string line)
-        {
-            var brokenDown = line.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
-            return string.Join("", brokenDown);
-        }
-
     }
 }
