@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "AdventOfCode2023.csproj", "{AB9054AE-10B4-4D28-98E7-F4DB084DBB22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2023", "AdventOfCode2023.csproj", "{AB9054AE-10B4-4D28-98E7-F4DB084DBB22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScratchPad", "..\ScratchPad\ScratchPad.csproj", "{2C914BBF-3AFF-41B4-82B3-043D9EF430DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AB9054AE-10B4-4D28-98E7-F4DB084DBB22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB9054AE-10B4-4D28-98E7-F4DB084DBB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB9054AE-10B4-4D28-98E7-F4DB084DBB22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C914BBF-3AFF-41B4-82B3-043D9EF430DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C914BBF-3AFF-41B4-82B3-043D9EF430DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C914BBF-3AFF-41B4-82B3-043D9EF430DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C914BBF-3AFF-41B4-82B3-043D9EF430DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
