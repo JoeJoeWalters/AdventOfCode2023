@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
 using Xunit.Abstractions;
 
 namespace AdventOfCode2023
@@ -85,41 +83,20 @@ namespace AdventOfCode2023
 
         private int Solver(List<Game> games, int red, int green, int blue, bool power)
         {
-            List<Game> trueGames = new List<Game>();
-
             if (power)
             {
                 return games
-                    .Select(game => 
-                        {
-                            int maxRed = game.Sets.Max(x => x.Red);
-                            int greenRed = game.Sets.Max(x => x.Green);
-                            int blueRed = game.Sets.Max(x => x.Blue);
-
-                            return maxRed * greenRed * blueRed;
-                        }).ToList().Sum();
+                    .Select(game => game.Sets.Max(x => x.Red) * game.Sets.Max(x => x.Green) * game.Sets.Max(x => x.Blue))
+                    .ToList()
+                    .Sum();
             }
             else
             {
-                trueGames = games
-                    .Where(game =>
-                        {
-                            output.WriteLine($"Line: {game.Id} Red: {game.Sets.Select(s => s.Red).Sum()} Green: {game.Sets.Select(s => s.Green).Sum()} Blue: {game.Sets.Select(s => s.Blue).Sum()} ");
-
-                            var trueSets = game.Sets.Where(set =>
-                                {
-                                    return
-                                        set.Red <= red &&
-                                        set.Green <= green &&
-                                        set.Blue <= blue;
-                                }
-                            );
-
-                            return trueSets.Count() == game.Sets.Count();
-                        })
-                    .ToList();
-
-                return trueGames.Select(game => game.Id).Sum();
+                return games
+                    .Where(game => game.Sets.Count() == game.Sets.Where(set => set.Red <= red && set.Green <= green && set.Blue <= blue).Count())
+                    .ToList()
+                    .Select(game => game.Id)
+                    .Sum();
             }
         } 
 
@@ -137,10 +114,9 @@ namespace AdventOfCode2023
                             sets.Split(',').ToList().ForEach(cube =>
                                 {
                                     var elements = cube.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                                    var colour = elements[1];
                                     var amount = int.Parse(elements[0]);
 
-                                    switch (colour)
+                                    switch (elements[1])
                                     {
                                         case "red":
                                             set.Red += amount;
