@@ -107,9 +107,8 @@ namespace AdventOfCode2023
             List<string> split = new List<string>();
             for (var i = 0; i < line.Length; i++)
             {
-                char ch = line[i];
-                int asc = (int)ch; 
-                if (asc >= 48 && asc <= 57)
+                char ch = line[i]; 
+                if (char.IsDigit(ch))
                 {
                     split.Add(ch.ToString());
                 }
@@ -136,6 +135,6 @@ namespace AdventOfCode2023
         }
 
         private List<string> SplitToNumbers(string item)
-            => item.ToCharArray().Where(ch => { int asc = (int)ch; return (asc >= 48 && asc <= 57); }).Select(x => x.ToString()).ToList();
+            => item.ToCharArray().Where(ch => { return char.IsDigit(ch); }).Select(x => x.ToString()).ToList();
     }
 }
