@@ -49,7 +49,7 @@ namespace AdventOfCode2023
         {
             // ARRANGE
             int expectedResult = 554003;
-            var schematic = DataToDateSet(File.ReadAllLines(@".\Day3_Part1.txt"));
+            var schematic = DataToDataSet(File.ReadAllLines(@".\Day3_Part1.txt"));
 
             // ACT
             var result = Solver(schematic, 1);
@@ -63,7 +63,7 @@ namespace AdventOfCode2023
         {
             // ARRANGE
             int expectedResult = 87263515;
-            var schematic = DataToDateSet(File.ReadAllLines(@".\Day3_Part2.txt"));
+            var schematic = DataToDataSet(File.ReadAllLines(@".\Day3_Part2.txt"));
 
             // ACT
             var result = Solver(schematic, 2);
@@ -131,7 +131,7 @@ namespace AdventOfCode2023
             return set;
         }
 
-        private DataSet DataToDateSet(string[] lines)
+        private DataSet DataToDataSet(string[] lines)
         {
             var result = new DataSet();
 
