@@ -84,13 +84,13 @@ namespace AdventOfCode2023
         /// <summary>
         /// Data broken down into a queryable set with the symbol by position
         /// </summary>
-        private record DateSet
+        private record DataSet
         {
             public List<Number> Numbers = new List<Number>();
             public Dictionary<char, HashSet<Point>> Symbols = new Dictionary<char, HashSet<Point>>();
         };
 
-        private int Solver(DateSet dataSet, int part)
+        private int Solver(DataSet dataSet, int part)
         {
             switch (part)
             {
@@ -131,9 +131,9 @@ namespace AdventOfCode2023
             return set;
         }
 
-        private DateSet DataToDateSet(string[] lines)
+        private DataSet DataToDateSet(string[] lines)
         {
-            var result = new DateSet();
+            var result = new DataSet();
 
             for (var y = 0; y < lines.Length; y++)
             {
